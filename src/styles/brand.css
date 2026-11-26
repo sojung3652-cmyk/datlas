@@ -42,17 +42,26 @@
   aspect-ratio: 21 / 9;
   background: #0e0e0e;
 }
-.hero-description { color: var(--muted); font-size: clamp(.95rem, 1.05vw, 1.075rem); max-width: 49ch; margin-bottom: 54px; }
+.hero-description { color: var(--muted); font-size: clamp(.95rem, 1.05vw, 1.075rem); max-width: 49ch; margin-bottom: 104px; }
 .hero-link { display: block; width: fit-content; padding-bottom: 6px; border-bottom: 1px solid var(--line); color: var(--ink); }
 .hero-link span { display: inline-block; margin-left: 8px; transition: transform var(--motion); }
 .hero-link:hover span { transform: translateY(3px); }
 
+@media (min-width: 761px) {
+  .hero-copy {
+    display: grid;
+    grid-template-rows: 1fr auto 1fr;
+  }
+  .hero-description { grid-row: 2; margin-bottom: 0; }
+  .hero-link { grid-row: 3; align-self: start; margin-top: 104px; }
+}
 
 @media (max-width: 760px) {
   .hero {
     grid-template-columns: minmax(0, 1fr);
     grid-template-areas: "stage" "copy";
-    row-gap: 20px;
+    /* The orbit extends above its paragraph, and grows with the copy width. */
+    row-gap: clamp(134px, 35vw, 266px);
     padding-block: 24px 40px;
   }
 }
