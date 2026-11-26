@@ -42,8 +42,8 @@
   aspect-ratio: 21 / 9;
   background: #0e0e0e;
 }
-.hero-description { color: var(--muted); font-size: clamp(.95rem, 1.05vw, 1.075rem); max-width: 49ch; }
-.hero-link { display: inline-block; margin-top: 24px; padding-bottom: 6px; border-bottom: 1px solid var(--line); color: var(--ink); }
+.hero-description { color: var(--muted); font-size: clamp(.95rem, 1.05vw, 1.075rem); max-width: 49ch; margin-bottom: 54px; }
+.hero-link { display: block; width: fit-content; padding-bottom: 6px; border-bottom: 1px solid var(--line); color: var(--ink); }
 .hero-link span { display: inline-block; margin-left: 8px; transition: transform var(--motion); }
 .hero-link:hover span { transform: translateY(3px); }
 
@@ -55,7 +55,6 @@
     row-gap: 20px;
     padding-block: 24px 40px;
   }
-  .hero-link { margin-top: 14px; }
 }
 @media (max-width: 640px) {
   .brand-image--clean { width: clamp(125px, 35vw, 145px); }
