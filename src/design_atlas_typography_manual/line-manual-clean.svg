@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 250" role="img" aria-labelledby="t">
+<title id="t">LINE</title>
+<path d="M 25 150 H 150 C 166 150 176 140 176 124 V 62" fill="none" stroke="#1c1b19" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M 176 124 C 176 142 188 150 208 150 H 235" fill="none" stroke="#1c1b19" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" />
+<line x1="265" y1="62" x2="265" y2="150" stroke="#1c1b19" stroke-width="3.2" stroke-linecap="round" />
+<path d="M 302 150 V 64 L 385 145 V 62" fill="none" stroke="#1c1b19" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M 470 150 H 430 C 405 150 392 133 392 106 C 392 80 406 62 430 62 H 585" fill="none" stroke="#1c1b19" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" />
+<line x1="392" y1="106" x2="485" y2="106" stroke="#1c1b19" stroke-width="3.2" stroke-linecap="round" />
+</svg>

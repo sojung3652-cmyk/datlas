@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 300" role="img" aria-labelledby="t">
+<title id="t">PLANE construction</title>
+<path d="M 292 45 C 250 12 185 20 150 65 C 110 116 130 183 190 205 C 228 219 270 203 292 173" fill="none" stroke="#c5c0b8" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4 5" opacity=".72"/>
+<path d="M 292 45 C 333 12 398 20 433 65 C 474 116 453 183 394 205 C 355 219 314 203 292 173" fill="none" stroke="#c5c0b8" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4 5" opacity=".72"/>
+<line x1="292" y1="20" x2="292" y2="75" stroke="#c5c0b8" stroke-width="1.0" stroke-linecap="round" opacity=".65"/>
+<line x1="292" y1="210" x2="292" y2="262" stroke="#c5c0b8" stroke-width="1.0" stroke-linecap="round" opacity=".65"/>
+<path d="M 10 185 H 95 C 116 185 125 174 125 154 V 95 H 162 C 187 95 200 108 200 128 C 200 149 187 162 162 162 H 125" fill="none" stroke="#1c1b19" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M 220 95 V 158 C 220 176 231 185 250 185 H 292 C 307 185 313 178 320 164" fill="none" stroke="#1c1b19" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M 320 164 L 357 97 C 362 88 370 88 375 97 L 414 185" fill="none" stroke="#1c1b19" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" />
+<line x1="338" y1="145" x2="397" y2="145" stroke="#1c1b19" stroke-width="3.2" stroke-linecap="round" />
+<path d="M 430 185 V 97 L 505 174 V 95" fill="none" stroke="#1c1b19" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M 555 185 H 525 C 500 185 487 168 487 140 C 487 113 501 95 525 95 H 555" fill="none" stroke="#1c1b19" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" />
+<line x1="487" y1="140" x2="540" y2="140" stroke="#1c1b19" stroke-width="3.2" stroke-linecap="round" />
+</svg>

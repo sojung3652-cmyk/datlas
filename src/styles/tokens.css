@@ -1,0 +1,23 @@
+:root {
+  color-scheme: light;
+  --paper: #faf9f7;
+  --surface: #fff;
+  --ink: #161616;
+  --muted: #625e58;
+  --line: #deddd9;
+  --plate: #f3f2ef;
+  --sans: "Inter Variable", "Segoe UI", sans-serif;
+  --display: "Instrument Serif", "Georgia", serif;
+  --serif: "Baskerville", "Georgia", serif;
+  --mono: "IBM Plex Mono", "Consolas", monospace;
+  --max-width: 1560px;
+  --gutter: clamp(22px, 7vw, 110px);
+
+  --ease: cubic-bezier(.22, 1, .36, 1);
+  --motion: 500ms var(--ease);
+  --gap: clamp(16px, 2.2vw, 36px);
+}
+
+:root {
+  --korean: "Pretendard Variable", "SUIT", "Noto Sans KR", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+}

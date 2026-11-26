@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 250" role="img" aria-labelledby="t">
+<title id="t">POINT</title>
+<path d="M 20 150 H 92 C 118 150 125 139 125 118 V 62 H 166 C 193 62 207 77 207 98 C 207 119 193 132 166 132 H 125" fill="none" stroke="#1c1b19" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" />
+<circle cx="255" cy="105" r="43" fill="none" stroke="#1c1b19" stroke-width="3.2"/>
+<line x1="315" y1="62" x2="315" y2="150" stroke="#1c1b19" stroke-width="3.2" stroke-linecap="round" />
+<path d="M 346 150 V 64 L 420 138 V 62" fill="none" stroke="#1c1b19" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M 435 62 H 493 M 464 62 V 150" fill="none" stroke="#1c1b19" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" />
+</svg>

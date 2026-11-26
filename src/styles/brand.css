@@ -1,0 +1,66 @@
+.brand-image {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  /* The SVGs share a 1672 × 941 canvas. These windows trim only transparent margins. */
+  aspect-ratio: var(--frame-width) / var(--frame-height);
+}
+.brand-image img {
+  position: absolute;
+  display: block;
+  max-width: none;
+  width: calc(1672 / var(--frame-width) * 100%);
+  height: auto;
+  left: calc(-1 * var(--frame-x) / var(--frame-width) * 100%);
+  top: calc(-1 * var(--frame-y) / var(--frame-height) * 100%);
+}
+.brand-image--clean {
+  --frame-width: 1357;
+  --frame-height: 266;
+  --frame-x: 173;
+  --frame-y: 348;
+  width: clamp(150px, 12vw, 185px);
+}
+
+.site-header .brand-image--clean { width: clamp(122px, 10vw, 148px); }
+
+.hero-title { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  grid-template-areas: "copy stage";
+  align-items: center;
+  column-gap: clamp(24px, 5vw, 88px);
+  padding-block: clamp(36px, 6vw, 96px);
+}
+.hero-copy { grid-area: copy; }
+.hero-stage { grid-area: stage; overflow-x: clip; min-width: 0; }
+.hero-artwork {
+  /* Map the motion viewBox (-200, 0, 2100, 900) to the original 1672-unit logo width. */
+  width: calc(2100 / 1672 * 100%);
+  margin-left: calc(-200 / 1672 * 100%);
+  aspect-ratio: 21 / 9;
+  background: #0e0e0e;
+}
+.hero-description { color: var(--muted); font-size: clamp(.95rem, 1.05vw, 1.075rem); max-width: 49ch; }
+.hero-link { display: inline-block; margin-top: 24px; padding-bottom: 6px; border-bottom: 1px solid var(--line); color: var(--ink); }
+.hero-link span { display: inline-block; margin-left: 8px; transition: transform var(--motion); }
+.hero-link:hover span { transform: translateY(3px); }
+
+
+@media (max-width: 760px) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "stage" "copy";
+    row-gap: 20px;
+    padding-block: 24px 40px;
+  }
+  .hero-link { margin-top: 14px; }
+}
+@media (max-width: 640px) {
+  .brand-image--clean { width: clamp(125px, 35vw, 145px); }
+  .site-header .brand-image--clean { width: clamp(104px, 29vw, 120px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-link:hover span { transform: none; }
+}

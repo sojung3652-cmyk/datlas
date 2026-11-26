@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 690 290" role="img" aria-labelledby="t">
+<title id="t">VOLUME construction</title>
+<circle cx="220" cy="139" r="92" stroke="#c5c0b8" stroke-width="1.3" fill="none" opacity=".62"/>
+<circle cx="405" cy="139" r="92" stroke="#c5c0b8" stroke-width="1.3" fill="none" opacity=".62"/>
+<circle cx="450" cy="48" r="4" fill="#1c1b19"/>
+<circle cx="150" cy="225" r="4" fill="#1c1b19"/>
+<path d="M 20 90 C 42 90 54 101 63 123 L 82 171 C 88 186 100 186 107 171 L 134 96" fill="none" stroke="#1c1b19" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" />
+<circle cx="176" cy="139" r="42" fill="none" stroke="#1c1b19" stroke-width="3.2"/>
+<path d="M 230 86 V 158 C 230 176 240 184 259 184 H 295" fill="none" stroke="#1c1b19" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M 300 96 V 150 C 300 171 314 184 334 184 C 355 184 370 171 370 150 V 96" fill="none" stroke="#1c1b19" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M 370 184 V 126 C 370 106 382 96 399 96 C 416 96 426 108 426 126 V 184" fill="none" stroke="#1c1b19" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M 426 126 C 426 107 439 96 457 96 C 474 96 484 108 484 126 V 184" fill="none" stroke="#1c1b19" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M 575 184 H 532 C 505 184 490 166 490 140 C 490 113 505 96 532 96 H 575" fill="none" stroke="#1c1b19" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" />
+<line x1="490" y1="140" x2="555" y2="140" stroke="#1c1b19" stroke-width="3.2" stroke-linecap="round" />
+</svg>

@@ -1,0 +1,60 @@
+.color-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: clamp(24px, 5vw, 72px);
+  padding-block: clamp(28px, 5vw, 68px) 0;
+  animation: color-reveal 500ms var(--ease) both;
+}
+.color-intro-copy h3 { margin: 4px 0 8px; font: 400 clamp(2.8rem, 6vw, 5.8rem)/1 var(--display); }
+:lang(ko) .color-intro-copy h3 { font: 620 clamp(2rem, 5vw, 4rem)/1.1 var(--korean); }
+.color-intro-copy > p:last-child { max-width: 39ch; margin-top: 14px; }
+.color-group-nav { display: grid; align-content: start; }
+.color-group-nav button {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 2px;
+  text-align: left;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+}
+.color-group-nav button:is(:hover, [aria-pressed="true"]) { color: var(--ink); border-bottom-color: var(--ink); }
+.color-group-nav button[aria-pressed="true"] span { font-weight: 650; }
+.color-group-nav small { font-variant-numeric: tabular-nums; }
+.study-grid:has(.study-card--color) { row-gap: clamp(25px, 3.5vw, 54px); }
+.study-card--color .examples { gap: 10px; }
+.study-card--color .examples:has(.palette--band) { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.study-card--color .example-label { display: block; overflow-wrap: anywhere; }
+.study-card--color .example-label small { margin-right: 4px; }
+.study-card--color .principle { margin-bottom: 12px; }
+.study-card--color .specimen { aspect-ratio: 2.35; }
+.palette--band .swatch span { font-size: clamp(7px, 7cqw, 11px); }
+.palette--band .swatch:hover span { opacity: 1; }
+.palette--ratio .swatch:first-child { flex-grow: 6; }
+.palette--ratio .swatch:nth-child(2) { flex-grow: 3; }
+.palette--ratio .swatch:nth-child(3) { flex-grow: 1; }
+.palette--wheel { display: grid; place-items: center; }
+.palette--wheel::before { content: ""; position: absolute; width: 30%; aspect-ratio: 1; border: 1px solid #8d877d; border-radius: 50%; }
+.palette--wheel .swatch { position: absolute; width: 13%; aspect-ratio: 1; border-radius: 50%; transform: rotate(var(--angle)) translateY(-15cqw) rotate(calc(-1 * var(--angle))); }
+.color-ui { display: grid; place-items: center; background: var(--sample-surface); color: var(--sample-ink); padding: 4% 8%; }
+.color-ui-panel { display: flex; align-items: center; flex-wrap: wrap; gap: 7cqw; width: 100%; padding: 7%; border: 1px solid var(--sample-accent); font-size: 8cqw; font-weight: 650; line-height: 1.1; }
+.color-ui-panel i { flex: none; width: 8cqw; aspect-ratio: 1; border-radius: 50%; background: var(--sample-accent); }
+.color-ui-panel small { margin-inline-start: auto; padding: .4em .6em; background: var(--sample-ink); color: var(--sample-surface); }
+[data-variant="color-tokens-0"] .color-ui-panel { background: var(--sample-surface); border-color: transparent; outline: 1px solid #0002; }
+[data-variant="color-tokens-1"] .color-ui-panel { border-color: transparent; font-weight: 750; }
+[data-variant="color-tokens-2"] .color-ui-panel { border-width: 2px; }
+[data-variant="color-tokens-3"] .color-ui-panel small { background: var(--sample-accent); color: white; }
+.contrast-pairs { display: grid; gap: .35em; width: 100%; font-size: 8cqw; line-height: 1.1; }
+.contrast-pairs span { padding: .24em .5em; border: 1px solid transparent; }
+.contrast-pairs span:nth-child(2) { color: var(--sample-accent); }
+[data-variant="accessibility-contrast-1"] .contrast-pairs { font-weight: 750; }
+[data-variant="accessibility-contrast-2"] .contrast-pairs span { border-color: currentColor; }
+[data-variant="accessibility-contrast-3"] .contrast-pairs span { outline: 1px solid currentColor; outline-offset: 1px; }
+.related-studies { padding: 0; margin: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 4px 12px; }
+.related-studies button { border: 0; background: none; padding: 0; text-decoration: underline; text-underline-offset: 3px; }
+@keyframes color-reveal { from { opacity: .4; clip-path: inset(0 0 10%); } to { opacity: 1; clip-path: inset(0); } }
+@media (max-width: 640px) { .color-intro { grid-template-columns: minmax(0, 1fr); } }
+@media (prefers-reduced-motion: reduce) { .color-intro { animation: none; } }
