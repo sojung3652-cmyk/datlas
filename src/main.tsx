@@ -58,7 +58,6 @@ function App() {
   const studyTools = useRef<HTMLDivElement>(null)
   const indexSection = useRef<HTMLElement>(null)
   const [showBack, setShowBack] = useState(false)
-  const divider = useReveal<HTMLDivElement>()
   const footer = useReveal<HTMLDivElement>()
   const categoryStudies = category === 'All' ? studies : studies.filter((study) => study.category === category)
   const groups = new Map<string, number>()
@@ -181,7 +180,7 @@ function App() {
       <main>
         <Hero />
         <section ref={indexSection} className="wrap" id="index" aria-labelledby="index-title">
-          <div className="index-heading section-rule" ref={divider}>
+          <div className="index-heading">
             <span className="section-number" aria-hidden="true">01</span>
             <h2 id="index-title">{t('Study index')}</h2>
             <span className="eyebrow study-count" role="status">{count(results.length)}</span>
