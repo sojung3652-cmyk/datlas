@@ -6,13 +6,16 @@
  *   const orbit = mountHeroOrbit(document.querySelector('.hero-copy'));   // the block that holds the <p>
  *   // orbit.destroy()
  *
- * options: { paragraph: element (default: first <p> inside root), size: 0.26, stretch: 1.18, lift: 0.22 }
+ * options: { paragraph: element (default: first <p> inside root), size: 0.26, stretch: 1.18, lift: 0.22,
+ *            hideWhileHeroPlays: '(max-width: 767px)' }  — on screens matching this query the orbit stays hidden
+ *            while hero-motion.js is playing, then fades in. Pass false to never hide.
  */
 export function mountHeroOrbit(root, opts = {}) {
   const NS = 'http://www.w3.org/2000/svg';
   const LINE = '#A7A7A4', RED = '#E65551', INK = '#111111';
   const P = opts.paragraph || root.querySelector('p');
   const SIZE = opts.size ?? 0.26, SY = opts.stretch ?? 1.18, LIFT = opts.lift ?? 0.22;
+  const HIDE_Q = opts.hideWhileHeroPlays ?? '(max-width: 767px)';
 
   /* layering: back orbit layer (0) · text (1) · front orbit layer (2) */
   if (getComputedStyle(root).position === 'static') root.style.position = 'relative';
@@ -27,6 +30,16 @@ export function mountHeroOrbit(root, opts = {}) {
     root.appendChild(s); return s;
   };
   const BACK = mkLayer(0), FRONT = mkLayer(2);
+
+  /* mobile: stay out of the way while the hero motion is playing (layout is untouched — the layers float) */
+  const mq = HIDE_Q && window.matchMedia ? window.matchMedia(HIDE_Q) : null;
+  function sync() {
+    const hide = !!(mq && mq.matches && window.__daHeroPlaying);
+    [BACK, FRONT].forEach(s => { s.style.transition = 'opacity .8s ease'; s.style.opacity = hide ? '0' : '1'; });
+  }
+  addEventListener('da:hero-play', sync); addEventListener('da:hero-end', sync);
+  mq && (mq.addEventListener ? mq.addEventListener('change', sync) : mq.addListener(sync));
+  sync();
   const el = (t, a, p) => { const e = document.createElementNS(NS, t); for (const k in a) e.setAttribute(k, a[k]); p.appendChild(e); return e; };
   const mk = (p, a) => el('path', Object.assign({ fill: 'none', 'stroke-linecap': 'round' }, a), p);
   const sio = x => -(Math.cos(Math.PI * x) - 1) / 2;
@@ -107,6 +120,8 @@ export function mountHeroOrbit(root, opts = {}) {
     destroy() {
       alive = false; cancelAnimationFrame(raf);
       ro ? ro.disconnect() : removeEventListener('resize', layout);
+      removeEventListener('da:hero-play', sync); removeEventListener('da:hero-end', sync);
+      mq && (mq.removeEventListener ? mq.removeEventListener('change', sync) : mq.removeListener(sync));
       BACK.remove(); FRONT.remove();
       lifted.forEach(c => { c.style.zIndex = ''; });
     },

@@ -1,4 +1,6 @@
+import { typographyContent } from './studies/typographyCatalog'
 import { colorContent } from './studies/colorCatalog'
+import { massContent } from './studies/massCatalog'
 import { createContext, useContext } from 'react'
 import type { Study } from './studies'
 
@@ -12,8 +14,19 @@ export function initialLanguage(): Language {
 export const LanguageContext = createContext<{ language: Language; setLanguage: (language: Language) => void }>({ language: 'en', setLanguage: () => {} })
 
 const korean: Record<string, string> = {
+  'Introduction': '입문',
+  'Basic concept': '기본 개념',
+  'Search studies': '학습자료 검색', 'Search by topic or keyword': '주제 또는 키워드로 검색',
+  'Study groups': '스터디 그룹', 'Back to categories': '카테고리로 돌아가기',
+  'Previous page': '이전 페이지', 'Next page': '다음 페이지',
+  'Material & Texture': '재질과 질감', 'Applied example': '적용 사례',
+  'Clear search': '검색어 지우기', 'Study pages': '스터디 페이지',
+  'No studies match your search.': '검색 조건에 맞는 스터디가 없습니다.',
+  'Typography gives language a visual voice.': '타이포그래피는 언어에 시각적인 목소리를 부여한다.',
+  'Typography groups': '타이포그래피 스터디 그룹',
+  'Accessibility': '접근성', 'Wordmark': '워드마크',
   'Motion': '모션', 'Brand': '브랜드', 'POINT': '점', 'LINE': '선', 'PLANE': '면', 'VOLUME': '입체', 'WORLD': '세계',
-  'Color study total': '스터디 {count}개', 'Color groups': '색채 스터디 그룹',
+  'Color groups': '색채 스터디 그룹',
   'Color is structure, hierarchy, atmosphere, and meaning.': '색은 구조이자 위계이며, 분위기이자 의미다.',
   'Web Application': '웹 적용', 'Common Mistake': '흔한 실수', 'Related Concepts': '관련 개념',
   'Luxury Minimalism': '럭셔리 미니멀리즘', 'Warm Neutral': '웜 뉴트럴', 'Dark Mode': '다크 모드', 'Design System': '디자인 시스템',
@@ -46,10 +59,6 @@ const korean: Record<string, string> = {
 type KoreanStudy = { title: string; definition: string; principle: string; examples: readonly [readonly [string, string], readonly [string, string], readonly [string, string], readonly [string, string]] }
 
 const koreanStudies: Record<string, KoreanStudy> = {
-  '04': {
-    title: '타이포그래피 위계', definition: '독자가 정보를 순서대로 읽도록 글자의 역할을 정하는 체계.', principle: '각 단계에 뚜렷한 역할을 주고 같은 역할에는 일관된 스타일을 적용한다.',
-    examples: [['크기', '가장 큰 제목을 먼저 읽고 작은 설명으로 시선이 이어진다.'], ['굵기', '크기가 같아도 굵은 글자가 더 높은 우선순위를 드러낸다.'], ['대비', '기울인 세리프 제목이 산세리프 본문과 구분된다.'], ['간격', '여백이 제목과 세부 정보를 서로 다른 묶음으로 나눈다.']],
-  },
   '05': {
     title: '그리드 시스템', definition: '화면의 요소를 일정한 기준에 맞춰 배치하는 구조.', principle: '공통된 정렬선과 간격으로 서로 다른 콘텐츠를 정돈한다.',
     examples: [['2열', '같은 너비의 두 열이 포트폴리오 프로젝트에 같은 비중을 준다.'], ['4열', '주요 기사는 두 열을, 나머지는 각각 한 열을 사용한다.'], ['8열', '상품 네 개가 각각 두 열을 사용해 같은 공간을 차지한다.'], ['12열', '주요 기사에는 여섯 열을, 보조 기사 두 편에는 각각 세 열을 배정한다.']],
@@ -65,7 +74,7 @@ export function useLanguage() {
   const ko = state.language === 'ko'
   return {
     ...state,
-    t: (text: string) => ko ? korean[text] ?? text : text === 'Color study total' ? '{count} studies' : text,
+    t: (text: string) => ko ? korean[text] ?? text : text,
     studyIndex: (category: string, id: string) => ko ? `${korean[category] ?? category} / 스터디 ${id}` : `${category} / Study ${id}`,
     count: (number: number) => {
       const value = String(number).padStart(2, '0')
@@ -75,13 +84,24 @@ export function useLanguage() {
   }
 }
 
+export function getStudyContent(id: string) {
+  return colorContent.get(id) ?? typographyContent.get(id) ?? layoutContent.get(id) ?? massContent.get(id)
+}
+
 export function localizeStudy(study: Study, language: Language): Study {
-  const color = colorContent.get(study.id)
-  if (color) {
-    const labels = study.examples.map((example, index) => ({ ...example, label: color.examples[index].label[language] }))
+  const content = getStudyContent(study.id)
+  if (content && 'definition' in content) {
+    const labels = study.examples.map((example, index) => ({ ...example, label: content.examples[index].label[language] }))
     return {
       ...study,
-      title: color.title[language], definition: color.definition[language], principle: color.principle[language],
+      title: content.title[language], definition: content.definition[language], principle: content.principle[language],
+      examples: [labels[0], labels[1], labels[2], labels[3]],
+    }
+  }
+  if (content && !koreanStudies[study.id]) {
+    const labels = study.examples.map((example, index) => ({ ...example, label: content.examples[index][language] }))
+    return {
+      ...study, title: content.title[language], definition: (content.concept ?? content.summary)[language], principle: content.principle[language],
       examples: [labels[0], labels[1], labels[2], labels[3]],
     }
   }
@@ -96,7 +116,6 @@ export function localizeStudy(study: Study, language: Language): Study {
 }
 
 const applications: Record<string, readonly [string, string, string, string, string, string]> = {
-  '04': ["Assign a consistent type treatment to each reading level.","Too many competing sizes or weights weaken the hierarchy.","Set a small type scale for page titles, section headings, body text, and metadata.","읽는 순서에 따라 단계별 글자 스타일을 정한다.","크기나 굵기가 지나치게 다양하면 위계가 흐려진다.","페이지 제목, 섹션 제목, 본문, 메타데이터에 일관된 글자 크기를 정한다."],
   '05': ["Choose tracks that support the content and its proportions.","Forcing equal spans can undermine the reading order.","Use a flexible grid whose columns can combine or collapse at smaller widths.","콘텐츠의 양과 비율에 맞는 열 구조를 선택한다.","모든 요소에 같은 너비를 강제하면 읽는 순서가 흐려질 수 있다.","작은 화면에서 열을 합치거나 줄일 수 있는 유연한 그리드를 사용한다."],
   '06': ["Make the most important element the clearest focal point.","Several equally strong focal points can pull attention in different directions.","Give the main headline or primary action a distinct visual treatment.","가장 중요한 요소가 뚜렷한 초점이 되도록 구성한다.","강조점이 여러 곳에 있으면 시선이 흩어진다.","핵심 제목이나 주요 행동에 구별되는 시각 스타일을 적용한다."],
 }
@@ -108,3 +127,4 @@ export function studyGuidance(id: string, language: Language) {
     ? [['활용 방법', copy[3]], ['흔한 실수', copy[4]], ['웹 디자인 적용', copy[5]]]
     : [['Usage', copy[0]], ['Common mistakes', copy[1]], ['Web design application', copy[2]]]
 }
+import { layoutContent } from './studies/layoutCatalog'

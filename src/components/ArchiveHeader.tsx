@@ -15,7 +15,7 @@ export function ArchiveHeader() {
         setCompact(y > 80 && y > previous)
         previous = y
       }
-      const atAbout = y > 0 && window.innerHeight + y >= document.documentElement.scrollHeight - 4
+      const atAbout = (document.getElementById('about')?.getBoundingClientRect().top ?? Infinity) < 155
       const atIndex = (document.getElementById('index')?.getBoundingClientRect().top ?? Infinity) < 155
       setSection(atAbout ? 'about' : atIndex ? 'index' : '')
     }

@@ -1,13 +1,15 @@
+import { TypographySpecimen } from './TypographySpecimen'
 import { ColorUiSpecimen } from './ColorUiSpecimen'
 import type { CSSProperties } from 'react'
 import { useLanguage } from '../language'
 import type { Example } from '../studies'
+import { AtlasSpecimen, atlasVisualKey } from './AtlasSpecimen'
 
-const typography: Record<string, [string, string, string]> = {
-  scale: ['THE FIELD JOURNAL', 'On the coast', 'An atlas of the shoreline'],
-  weight: ['STUDIO / SYSTEM', 'Interface', 'Tools for everyday work'],
-  contrast: ['MAISON / OBJECTS', 'Quiet form', 'Collection 01 · Objects in use'],
-  spacing: ['NOTES ON DESIGN', 'Open space', 'The rhythm between words'],
+export function specimenVisualKey(example: Example) {
+  if (example.kind === 'atlas') return JSON.stringify(atlasVisualKey(example))
+  if (example.kind === 'palette') return JSON.stringify([example.kind, example.presentation, example.uiVariant, example.colors])
+  if ('position' in example) return JSON.stringify([example.kind, example.topic, example.position])
+  return JSON.stringify([example.kind, example.variant])
 }
 
 const grids: Record<string, { title: string; subtitle: string; columns: number; entries: string[] }> = {
@@ -33,11 +35,19 @@ export function Specimen({ example }: { example: Example }) {
     )
   }
 
-  if (example.kind === 'type') {
-    const [eyebrow, title, subtitle] = typography[example.variant]
-    return <div className={`specimen mini type-${example.variant}`} aria-hidden="true">
-      <div className="mini-sheet type-sheet"><small>{t(eyebrow)}</small><b>{t(title)}</b><span>{t(subtitle)}</span><i /></div>
-    </div>
+  if (example.kind === 'typography') return <TypographySpecimen example={example} />
+  if (example.kind === 'atlas') return <AtlasSpecimen example={example} />
+
+  if (example.kind === 'layout') {
+    const labels = language === 'ko' ? ['구성', '세부', '노트', '보기'] : ['Form', 'Detail', 'Notes', 'Read']
+    return (
+      <div className={`specimen layout-study-proof layout-${example.topic} layout-step-${example.position}`} aria-hidden="true">
+        <div className="layout-sheet">
+          <span><b>{labels[0]}</b>{labels[1]}</span>
+          <span><b>{labels[2]}</b>{labels[3]}</span>
+        </div>
+      </div>
+    )
   }
 
   if (example.kind === 'grid') {

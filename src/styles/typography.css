@@ -1,0 +1,104 @@
+.study-card--type .examples { gap: 10px; }
+.study-card--type .principle { margin-bottom: 12px; }
+.study-card--type .type-sample { aspect-ratio: 2.15; }
+.type-sample {
+  display: grid;
+  place-items: center;
+  background: var(--paper);
+  box-shadow: inset 0 0 0 1px var(--line);
+  color: var(--ink);
+  font-family: var(--sample-face, var(--sans));
+}
+.type-sample :lang(ko):not(svg) { word-break: keep-all; }
+:lang(ko) .type-sample :is(.type-editorial-proof,.type-text-proof,.type-scale-proof) { font-family: var(--korean); }
+.face-old { --sample-face: "Palatino Linotype", Palatino, Georgia, serif; }
+.face-transitional { --sample-face: "Baskerville", "Times New Roman", serif; }
+.face-didone { --sample-face: Didot, "Bodoni MT", "Instrument Serif", serif; }
+.face-contemporary { --sample-face: var(--display); }
+.face-grotesk { --sample-face: Arial, Helvetica, sans-serif; }
+.face-neo { --sample-face: var(--sans); }
+.face-geometric { --sample-face: "Century Gothic", "Futura", "Avenir Next", sans-serif; }
+.face-humanist { --sample-face: "Segoe UI", "Gill Sans", Calibri, sans-serif; }
+.face-slab { --sample-face: Rockwell, "Courier New", serif; }
+.face-clarendon { --sample-face: Clarendon, Rockwell, "Courier New", serif; }
+.face-wedge { --sample-face: "Palatino Linotype", Palatino, Georgia, serif; }
+.anatomy-svg { display: block; width: 100%; height: 100%; }
+.type-guide { fill: none; stroke: #bcb8b0; stroke-dasharray: 2 2; stroke-width: .7; }
+.type-pointer { fill: none; stroke: #8c867d; stroke-width: .8; }
+.type-glyph { fill: currentColor; font-size: 47px; }
+.type-guide-label { fill: var(--muted); font: 9px var(--sans); }
+.type-face-proof { display: grid; place-items: center; width: 100%; gap: 1cqw; }
+.type-face-proof b { font-size: clamp(17px, 24cqw, 65px); font-weight: 500; line-height: .95; }
+.type-face-proof span { font-size: 4.5cqw; color: var(--muted); }
+.type-sample--display-typeface.type-step-3 .type-face-proof b,
+.type-sample--grotesk.type-step-2 .type-face-proof b { text-transform: uppercase; font-weight: 750; letter-spacing: -.065em; }
+.type-kern-proof { display: flex; align-items: baseline; gap: 10cqw; font-size: 19cqw; line-height: 1; }
+.type-kern-proof span { font-kerning: none; color: var(--muted); }
+.type-kern-proof b { font-kerning: normal; font-weight: 500; }
+.type-text-proof { width: 78%; font-size: 5cqw; line-height: var(--sample-leading); transition: line-height 500ms var(--ease); }
+.type-sample--measure .type-text-proof { width: var(--sample-measure); font-size: 5cqw; line-height: 1.28; }
+.type-sample--alignment .type-text-proof { text-align: var(--sample-alignment); }
+.type-scale-proof { display: grid; gap: 1cqw; width: 82%; line-height: 1.12; font-size: 8cqw; }
+.type-scale-proof small { font-size: .82em; }
+.type-scale-proof span { font-size: calc(1em * var(--sample-scale)); }
+.type-scale-proof b { font-size: calc(1em * var(--sample-scale) * var(--sample-scale)); transform-origin: left center; transition: transform 500ms var(--ease); }
+.type-motion-proof { font-size: 24cqw; line-height: 1; font-weight: var(--sample-weight); transition: letter-spacing 500ms var(--ease), font-weight 500ms var(--ease); }
+.type-sample--tracking .type-motion-proof { font-size: 16cqw; font-weight: 550; letter-spacing: var(--sample-tracking); text-transform: lowercase; }
+.type-sample--tracking.type-step-3 .type-motion-proof { text-transform: uppercase; }
+.type-editorial-proof { display: flex; flex-direction: column; align-items: flex-start; width: 84%; gap: 2cqw; line-height: 1.15; }
+.type-editorial-proof small { font-size: 5cqw; color: var(--muted); }
+.type-editorial-proof b { font-size: 15cqw; line-height: .98; font-weight: 610; }
+.type-editorial-proof p { font-size: 5.5cqw; }
+.type-sample--hierarchy.type-step-0 .type-editorial-proof b { font-size: 18cqw; }
+.type-sample--hierarchy.type-step-1 .type-editorial-proof b { font-size: 10cqw; font-weight: 850; }
+.type-sample--hierarchy.type-step-2 .type-editorial-proof p { color: var(--muted); }
+.type-sample--hierarchy.type-step-3 .type-editorial-proof { align-items: center; }
+.type-sample--hierarchy.type-step-3 .type-editorial-proof b { order: -1; }
+.type-sample--font-pairing.type-step-0 .type-editorial-proof b { font-family: Georgia, var(--korean), serif; }
+.type-sample--font-pairing.type-step-1 .type-editorial-proof b { font-family: var(--display), var(--korean); }
+.type-sample--font-pairing.type-step-2 .type-editorial-proof b { font-family: var(--mono), var(--korean); font-size: 12cqw; }
+.type-sample--font-pairing.type-step-3 .type-editorial-proof b { font-family: inherit; }
+.type-sample--body-display .type-editorial-proof b { font-size: calc(8cqw * var(--sample-scale) * var(--sample-scale)); }
+.type-sample--body-display.type-step-3 .type-editorial-proof b { font-family: var(--display), var(--korean); letter-spacing: -.025em; }
+.type-sample--editorial-typography .type-editorial-proof b { font-family: var(--display), var(--korean); }
+.type-sample--editorial-typography.type-step-1 .type-editorial-proof { align-items: center; text-align: center; }
+.type-sample--editorial-typography.type-step-2 .type-editorial-proof p { columns: 2; column-gap: 4cqw; }
+.type-sample--editorial-typography.type-step-3 .type-editorial-proof { padding-left: 5cqw; border-left: 1px solid var(--line); }
+.type-sample--responsive-typography .type-editorial-proof { border: 1px solid var(--line); padding: 4cqw; }
+.type-sample--responsive-typography.type-step-0 .type-editorial-proof { width: 50%; }
+.type-sample--responsive-typography.type-step-1 .type-editorial-proof { width: 68%; }
+.type-sample--responsive-typography.type-step-0 b { font-size: 8cqw; }
+.type-sample--responsive-typography.type-step-1 b { font-size: 11cqw; }
+.type-sample--responsive-typography.type-step-3 b { font-size: clamp(12px, 14cqw, 42px); }
+@media (prefers-reduced-motion: no-preference) {
+  .example:is(:hover,:focus-visible) .type-sample--tracking .type-motion-proof { letter-spacing: calc(var(--sample-tracking) + .09em); }
+  .example:is(:hover,:focus-visible) .type-sample--font-weight .type-motion-proof { font-weight: calc(var(--sample-weight) + 90); }
+  .example:is(:hover,:focus-visible) .type-sample--type-scale b { transform: scale(1.055); }
+  .example:is(:hover,:focus-visible) .type-sample--leading .type-text-proof { line-height: calc(var(--sample-leading) + .2); }
+  .example:is(:hover,:focus-visible,[aria-pressed="true"]) .type-sample--kinetic-typography .type-motion-proof { animation: type-reveal 630ms var(--ease) both; }
+  .example:is(:hover,:focus-visible,[aria-pressed="true"]) .type-sample--kinetic-typography.type-step-1 .type-motion-proof { animation-name: type-track; }
+  .example:is(:hover,:focus-visible,[aria-pressed="true"]) .type-sample--kinetic-typography.type-step-2 .type-motion-proof { animation-name: type-weight-shift; }
+  .example:is(:hover,:focus-visible,[aria-pressed="true"]) .type-sample--kinetic-typography.type-step-3 .type-motion-proof { animation-name: type-mask; }
+}
+@keyframes type-reveal { from { opacity: 0; transform: translateY(.18em); } to { opacity: 1; transform: translateY(0); } }
+@keyframes type-track { from { letter-spacing: -.09em; } to { letter-spacing: .14em; } }
+@keyframes type-weight-shift { from { font-weight: 300; } to { font-weight: 780; } }
+@keyframes type-mask { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0); } }
+
+@font-face {
+  font-family: "Atlas Flex Specimen";
+  src: url("@fontsource-variable/roboto-flex/files/roboto-flex-latin-full-normal.woff2") format("woff2");
+  font-weight: 100 1000;
+  font-display: swap;
+}
+.type-axis-proof { display: grid; place-items: center; gap: 2cqw; }
+.type-axis-proof small { color: var(--muted); font-size: 6cqw; }
+.type-axis-proof b { font: 400 22cqw/.95 "Atlas Flex Specimen", var(--sans); font-optical-sizing: none; }
+.type-sample--variable-fonts.type-step-0 b { font-variation-settings: "wght" 825; }
+.type-sample--variable-fonts.type-step-1 b { font-variation-settings: "wdth" 60; }
+.type-sample--variable-fonts.type-step-2 b { font-variation-settings: "slnt" -10; }
+.type-sample--variable-fonts.type-step-3 b { font-variation-settings: "opsz" 96; }
+.type-sample--optical-size.type-step-0 b { font-variation-settings: "opsz" 8; font-size: 10cqw; }
+.type-sample--optical-size.type-step-1 b { font-variation-settings: "opsz" 16; font-size: 13cqw; }
+.type-sample--optical-size.type-step-2 b { font-variation-settings: "opsz" 28; font-size: 18cqw; }
+.type-sample--optical-size.type-step-3 b { font-variation-settings: "opsz" 90; }

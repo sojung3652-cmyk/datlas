@@ -78,6 +78,8 @@ h1, h2, h3, p { margin: 0; }
 .detail-note { border-top: 1px solid var(--line); margin-top: 25px; padding-top: 14px; }
 .detail-note h3 { font-weight: 600; font-size: 1rem; margin-bottom: 4px; }
 .hex-list { display: flex; gap: 8px 14px; flex-wrap: wrap; list-style: none; padding: 0; font: .82rem var(--mono); }
+.basic-concept { margin-block: 18px 24px; padding-top: 12px; border-top: 1px solid var(--line); }
+.basic-concept p { max-width: 68ch; margin-top: 5px; line-height: 1.65; }
 ::view-transition-group(root) { animation-duration: 440ms; }
 .study-detail[open] .detail-inner { animation: panel-in 460ms var(--ease) both; }
 ::view-transition-old(study-panel) { animation: panel-in 440ms var(--ease) reverse both; }
@@ -105,7 +107,8 @@ h1, h2, h3, p { margin: 0; }
 
 
 /* Keep the sticky header's space stable while its visible bar compacts. */
-.site-header { --nav-height: 58px; --nav-compact-height: 46px; height: var(--nav-height); border: 0; background: none; pointer-events: none; }
+:root { --nav-height: 58px; --nav-compact-height: 46px; }
+.site-header { height: var(--nav-height); border: 0; background: none; pointer-events: none; }
 .site-header::before { content: ""; position: absolute; inset: 0 0 auto; height: var(--nav-height); background: var(--paper); border-bottom: 1px solid var(--line); transition: height 350ms var(--ease); }
 .site-header[data-compact="true"]::before { height: var(--nav-compact-height); }
 .header-inner { position: relative; pointer-events: auto; }
@@ -153,7 +156,7 @@ h1, h2, h3, p { margin: 0; }
 :lang(ko) .study-card--02 .example { grid-template-columns: minmax(0, 1fr) 68px; }
 
 @media (max-width: 640px) {
-  .site-header { --nav-height: 50px; }
+  :root { --nav-height: 50px; }
   .language-switcher { --switch-edge: 18px; }
   .site-footer { padding-bottom: 78px; }
   :lang(ko) .index-heading h2 { font-size: clamp(1.55rem, 6.5vw, 2.35rem); }

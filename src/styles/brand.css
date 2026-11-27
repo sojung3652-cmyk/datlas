@@ -34,13 +34,15 @@
   padding-block: clamp(36px, 6vw, 96px);
 }
 .hero-copy { grid-area: copy; }
-.hero-stage { grid-area: stage; overflow-x: clip; min-width: 0; }
+.hero-stage { grid-area: stage; min-width: 0; }
+.hero-stage--media { position: relative; aspect-ratio: 1672 / 900; }
+.hero-stage--media .hero-artwork, .hero-video { position: absolute; inset: 0; width: 100%; height: 100%; }
+.hero-video { display: block; object-fit: contain; visibility: hidden; }
+.hero-stage[data-mode="video"] .hero-video { visibility: visible; }
+.hero-stage[data-mode="video"] .hero-artwork { visibility: hidden; }
 .hero-artwork {
-  /* Map the motion viewBox (-200, 0, 2100, 900) to the original 1672-unit logo width. */
-  width: calc(2100 / 1672 * 100%);
-  margin-left: calc(-200 / 1672 * 100%);
-  aspect-ratio: 21 / 9;
-  background: #0e0e0e;
+  width: 100%;
+  aspect-ratio: 1672 / 900;
 }
 .hero-description { color: var(--muted); font-size: clamp(.95rem, 1.05vw, 1.075rem); max-width: 49ch; margin-bottom: 104px; }
 .hero-link { display: block; width: fit-content; padding-bottom: 6px; border-bottom: 1px solid var(--line); color: var(--ink); }

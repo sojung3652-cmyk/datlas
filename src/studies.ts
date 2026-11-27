@@ -1,4 +1,7 @@
-import { colorCatalog, type ColorGroup } from './studies/colorCatalog'
+import { typographyCatalog, type TypographyGroup } from './studies/typographyCatalog'
+import { colorCatalog } from './studies/colorCatalog'
+import { layoutCatalog } from './studies/layoutCatalog'
+import { mergeMassStudies, type MassCategory } from './studies/massCatalog'
 
 export const categories = ['Color', 'Typography', 'Layout', 'Perception', 'UI Styles', 'UX', 'Materials', 'Motion', 'Brand'] as const
 export type Category = typeof categories[number]
@@ -7,12 +10,14 @@ type PalettePresentation = 'strip' | 'fan' | 'chips' | 'scale' | 'field' | 'orbi
 export type Example = {
   label: string
   note: string
-} & ({ kind: 'palette'; presentation: PalettePresentation; colors: readonly string[]; uiVariant?: string } | { kind: 'type' | 'grid' | 'focus'; variant: string })
+} & ({ kind: 'palette'; presentation: PalettePresentation; colors: readonly string[]; uiVariant?: string } | { kind: 'grid' | 'focus'; variant: string } | { kind: 'typography'; topic: string; group: TypographyGroup; position: 0 | 1 | 2 | 3 } | { kind: 'layout'; topic: string; position: 0 | 1 | 2 | 3 } | { kind: 'atlas'; family: MassCategory; group: string; topic: string; position: 0 | 1 | 2 | 3 })
 
 export type Study = {
   id: string
   index?: string
-  group?: ColorGroup
+  group?: string
+  keywords?: readonly string[]
+  sourceId?: string
   level?: 'POINT' | 'LINE' | 'PLANE' | 'VOLUME' | 'WORLD'
   category: Category
   title: string
@@ -21,21 +26,11 @@ export type Study = {
   examples: readonly [Example, Example, Example, Example]
 }
 
-export const studies: readonly Study[] = [
+export const studies: readonly Study[] = mergeMassStudies([
   ...colorCatalog,
+  ...typographyCatalog,
   {
-    id: '04', level: 'POINT', category: 'Typography', title: 'Typography Hierarchy',
-    definition: 'A system of type roles that guides readers through information.',
-    principle: 'Give each level a distinct role and a consistent treatment.',
-    examples: [
-      { kind: 'type', variant: 'scale', label: 'Scale', note: 'The largest line reads first, followed by smaller supporting text.' },
-      { kind: 'type', variant: 'weight', label: 'Weight', note: 'Bold type signals priority even when the text stays the same size.' },
-      { kind: 'type', variant: 'contrast', label: 'Contrast', note: 'An italic serif title separates the headline from its sans-serif details.' },
-      { kind: 'type', variant: 'spacing', label: 'Spacing', note: 'A gap groups the title separately from its supporting details.' },
-    ],
-  },
-  {
-    id: '05', level: 'LINE', category: 'Layout', title: 'Grid Systems',
+    id: '05', index: '01', level: 'LINE', category: 'Layout', title: 'Grid Systems',
     definition: 'An underlying structure that aligns elements across a composition.',
     principle: 'Use shared edges and intervals to organize varied content.',
     examples: [
@@ -56,4 +51,5 @@ export const studies: readonly Study[] = [
       { kind: 'focus', variant: 'isolation', label: 'Isolation', note: 'Open space around the event name makes it the poster’s focal point.' },
     ],
   },
-]
+  ...layoutCatalog,
+])
